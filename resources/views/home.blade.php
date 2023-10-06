@@ -34,7 +34,7 @@
                   </div>
 
                   <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">
-                    <p>Tugas terbaru nanti disini</p>
+                    @livewire('tug')
                   </div>
 
                   <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">

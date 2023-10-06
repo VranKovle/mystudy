@@ -35,7 +35,7 @@ class Regiskan extends Component
         $simpan->password = bcrypt($this->password);
         $simpan->peran = $this->peran;
         $simpan->save();
-        $this->alert('success', 'Basic Alert');
+        $this->alert('success', 'Berhasil registrasi');
     }
     public function render()
     {

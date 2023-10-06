@@ -23,6 +23,8 @@ Route::get('/regiskan', function () {
     return view('regiskan');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/tugas/{idtugas}', [App\Http\Controllers\HomeController::class, 'lihatTugas'])->name('tugas');

@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function lihatTugas($idtugas){
+        $datatugas = Tugas::find($idtugas);
+        return view('tugas', [
+            'datatugas' => $datatugas
+        ]);
+    }
 }
