@@ -31,9 +31,11 @@
         <div class="card-body">
             <div class="card" style="border-radius: 0px;border-color: black">
                 <div class="card-body">
+                    @if(auth()->user()->id === $data->user_id)
                     <button type="button" class="btn btn-outline-danger" wire:click="hapus({{ $data->id }})" style="border-radius: 0px;">X</button>
+                    @endif
                     <a href="{{ url('tugas', ['idtugas'=>$data])}}" class="btn btn-outline-dark" style="padding-right: 50px;padding-left: 50px;border-radius: 0px;">{{ $data->jdl }}</a>
-                    {{ User::find('id', $data->user_id)->name }} (contoh saja)
+                    {{ App\Models\User::find($data->user_id)->name }}
                 </div>
             </div>
         </div>
@@ -41,7 +43,5 @@
     @endforeach
 
 
-
-    {{-- endforecH --}}
 
 </div>
