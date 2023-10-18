@@ -35,7 +35,7 @@
                     <button type="button" class="btn btn-outline-danger" wire:click="hapus({{ $data->id }})" style="border-radius: 0px;">X</button>
                     @endif
                     <a href="{{ url('tugas', ['idtugas'=>$data])}}" class="btn btn-outline-dark" style="padding-right: 50px;padding-left: 50px;border-radius: 0px;">{{ $data->jdl }}</a>
-                    {{ App\Models\User::find($data->user_id)->name }}
+                    {{ App\Models\User::find($data->user_id)->name }} (<i>{{ Carbon\Carbon::parse($data->created_at)->isoFormat('D MMMM Y , HH:mm') }}</i>)
                 </div>
             </div>
         </div>

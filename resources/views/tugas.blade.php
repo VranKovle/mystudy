@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-hallo
+
+
+@livewire('materi',['data'=>$datatugas])
 
 
 @endsection
