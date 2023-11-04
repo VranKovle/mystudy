@@ -1,8 +1,9 @@
 <div>
 
     <input type="text" class="form-control" wire:model='jawab' placeholder="Isi Jawaban" style="margin-bottom: 10px;" />
-    <a href="" class="btn btn-primary form-control" wire:click='simpan'>Kirim</a>
+    <button class="btn btn-primary form-control" wire:click='simpan'>Kirim</button>
     <br>
+    <button wire:click='coba'>COBA</button>
 
 
     @foreach ($answer as $data)

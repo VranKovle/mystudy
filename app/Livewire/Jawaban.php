@@ -7,33 +7,36 @@ use Livewire\Component;
 
 class Jawaban extends Component
 {
-    protected $listeners = ['refreshComponent' => '$refresh'];
+
     public $jawab;
     public $nilainya;
     public $data;
+
     public function mount($data)
     {
         $this->data = $data;
     }
+
     public function simpan()
     {
+
         $simpan = new answer(); //hati hati disini ya, jika diperlukan, relasikan antara pertanyaan dengan answer
         $simpan->user_id = auth()->user()->id;
         $simpan->jawaban = $this->jawab;
         $simpan->save();
-        $this->emit('refreshComponent');
+        return redirect()->to('/tugas/' . $this->data->tugas_id);
     }
     public function hapus($id)
     {
         answer::destroy($id);
-        $this->dispatch('refreshComponent');
+        return redirect()->to('/tugas/' . $this->data->tugas_id);
     }
     public function edit($id)
     {
         $simpan = answer::findOrfail($id);
         $simpan->nilai = $this->nilainya;
         $simpan->save();
-        $this->dispatch('refreshComponent');
+        return redirect()->to('/tugas/' . $this->data->tugas_id);
     }
     public function render()
     {
