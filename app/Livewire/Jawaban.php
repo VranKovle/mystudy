@@ -10,8 +10,14 @@ class Jawaban extends Component
     protected $listeners = ['refreshComponent' => '$refresh'];
     public $jawab;
     public $nilainya;
-    public function simpan(){
-        $simpan = new answer();
+    public $data;
+    public function mount($data)
+    {
+        $this->data = $data;
+    }
+    public function simpan()
+    {
+        $simpan = new answer(); //hati hati disini ya, jika diperlukan, relasikan antara pertanyaan dengan answer
         $simpan->user_id = auth()->user()->id;
         $simpan->jawaban = $this->jawab;
         $simpan->save();
@@ -22,7 +28,8 @@ class Jawaban extends Component
         answer::destroy($id);
         $this->dispatch('refreshComponent');
     }
-    public function edit($id){
+    public function edit($id)
+    {
         $simpan = answer::findOrfail($id);
         $simpan->nilai = $this->nilainya;
         $simpan->save();

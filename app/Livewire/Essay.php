@@ -11,16 +11,17 @@ class Essay extends Component
     protected $listeners = ['refreshComponent' => '$refresh'];
     public function mount($data)
     {
-     $this->data = $data;
+        $this->data = $data;
     }
     public $soal;
-    public function simpan(){
+    public function simpan()
+    {
         $simpan = new pertanyaan();
         $simpan->tugas_id = $this->data->id;
         $simpan->isisoal = $this->soal;
         $simpan->save();
         $this->dispatch('refreshComponent');
-        return redirect()->to('/tugas/{idtugas}');
+        //return redirect()->to('/tugas/{idtugas}');
     }
     public function render()
     {
