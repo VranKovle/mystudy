@@ -1,9 +1,10 @@
 <div>
 
-
+    @if (Auth::user()->peran=='Moderator')
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tg">
         Tambah
       </button>
+    @endif
  <!-- Modal -->
  <div class="modal fade" id="tg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -41,6 +42,7 @@
         </div>
     </div>
     @endforeach
+
 
 
 
