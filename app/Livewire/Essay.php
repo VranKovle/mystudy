@@ -24,7 +24,16 @@ class Essay extends Component
         $this->dispatch('refresh');
         return back();
     }
-
+    public function edit($id)
+    {
+        $simpan = pertanyaan::findOrfail($id);
+        $simpan->isisoal = $this->soal;
+        $simpan->save();
+    }
+    public function hapus($id)
+    {
+        pertanyaan::destroy($id);
+    }
     public function render()
     {
 

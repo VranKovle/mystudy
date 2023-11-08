@@ -18,7 +18,7 @@
         }
 
         .navbar {
-            background-color: rgb(0, 107, 179);
+            background: linear-gradient(to right, #8989ff, #2443cb);
         }
 
         /* The sidebar menu */
@@ -144,7 +144,6 @@
         });
         //# sourceURL=pen.js
     </script>
-
 
 
     @livewireScripts()

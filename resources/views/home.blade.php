@@ -4,9 +4,9 @@
 <div>
 <br>
 
-@foreach (App\Models\User::all() as $pengguna)
+{{-- @foreach (App\Models\User::all() as $pengguna)
     {{$pengguna->name}}<br />
-@endforeach
+@endforeach --}}
 
 @livewire('info')
 

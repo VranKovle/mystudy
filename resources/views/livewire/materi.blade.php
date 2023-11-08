@@ -9,12 +9,12 @@
         <div class="card-body">
             @if (Auth::user()->peran == 'Moderator')
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#materi">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#materi" style="margin-bottom: 20px;">
                     + Materi
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="materi" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div  wire:ignore.selfx class="modal fade" id="materi" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -28,7 +28,7 @@
                                     <label>Judul :</label>
                                     <input type="text" class="form-control" wire:model='materijudul' />
                                     <label>Isi :</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" wire:model='materiisi'></textarea>
+                                    <textarea class="form-control" rows="3" wire:model='materiisi' name="materiisi" id="materiisi"></textarea>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -54,3 +54,22 @@
         </div>
     </div>
 </div>
+@push('scripts')
+
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#message'))
+            .then(editor => {
+                editor.model.document.on('change:data', () => {
+                @this.set('message', editor.getData());
+                })
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+
+
+@endpush
