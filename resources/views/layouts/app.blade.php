@@ -68,8 +68,9 @@
         }
     </style>
 
-</head>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 
+</head>
 <body>
 
     <nav class="navbar">
@@ -144,13 +145,12 @@
         });
         //# sourceURL=pen.js
     </script>
-
-
     @livewireScripts()
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <x-livewire-alert::scripts />
 
+    @stack('scripts')
 </body>
 
 

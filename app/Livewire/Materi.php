@@ -21,6 +21,16 @@ class Materi extends Component
         $simpan->isimateri = $this->materiisi;
         $simpan->save();
     }
+    public function hapus($id){
+        material::destroy($id);
+        return redirect()->to('/tugas/' . $this->data->id);
+    }
+    public function edit($id){
+        $simpan = material::findOrfail($id);
+        $simpan->judulmateri = $this->materijudul;
+        $simpan->isimateri = $this->materiisi;
+        $simpan->save();
+    }
     public function render()
     {
     $material = Material::where('tugas_id', $this->data->id)->get();
