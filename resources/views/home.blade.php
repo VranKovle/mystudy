@@ -1,81 +1,149 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-<br>
+    <div>
+        <br>
 
-{{-- @foreach (App\Models\User::all() as $pengguna)
-    {{$pengguna->name}}<br />
-@endforeach --}}
 
-@livewire('info')
+
+        @livewire('info')
 
 
         <div class="container">
-        <div class="row">
-            <div class="card">
-              <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Peringkat</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">Tugas</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#deals" role="tab" aria-controls="deals" aria-selected="false">Kalender</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-body">
-                 <div class="tab-content mt-3">
-                  <div class="tab-pane active" id="description" role="tabpanel">
-                    <p>Peringkat akan ditampilkan disini ( read )</p>
-                  </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#description" role="tab" aria-controls="description"
+                                    aria-selected="true">Peringkat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#history" role="tab" aria-controls="history"
+                                    aria-selected="false">Tugas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#deals" role="tab" aria-controls="deals"
+                                    aria-selected="false">Kalender</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content mt-3">
+                            <div class="tab-pane active" id="description" role="tabpanel">
 
-                  <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">
-                    @livewire('tug')
-                  </div>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#nilailist">
+                                    List Nilai
+                                </button>
 
-                  <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
-                    <h5 class="card-title">Kalender</h5>
-                    <iframe src="https://calendar.google.com/calendar/embed?height=300&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FPontianak&showTitle=0&showNav=0&showPrint=0&showTabs=1&showTz=0&showCalendars=0&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=aWQuaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%2333B679&color=%230B8043" style="" width="300" height="300" frameborder="0" scrolling="no"></iframe>
-                  </div>
+                                <div class="modal fade" id="nilailist" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="nilailist">List Nilai</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table">
+                                                    <thead>
+                                                        <th>Nama</th>
+                                                        <th>List Nilai</th>
+                                                        <th></th>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (App\Models\User::all() as $data)
+                                                            <tr>
+                                                                <td>{{ $data->name }}</td>
+                                                                <td>
+                                                                    @foreach (App\Models\answer::where('user_id', $data->id)->get() as $nilai)
+                                                                        {{ $nilai->nilai }},
+                                                                    @endforeach
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Total</th>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $counter = 1;
+                                        @endphp
+                                        @foreach (App\Models\User::select(['users.*', DB::raw('SUM(answers.nilai) as total_nilai')])->leftJoin('answers', 'users.id', '=', 'answers.user_id')->groupBy('users.id')->orderByDesc('total_nilai')->get() as $data)
+                                            <tr>
+                                                <td>#{{ $counter++ }}</td>
+                                                <td>{{ $data->name }}</td>
+                                                <td>
+                                                    {{ App\Models\answer::where('user_id', $data->id)->sum('nilai') }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                            <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">
+                                @livewire('tug')
+                            </div>
+
+                            <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
+                                <h5 class="card-title">Kalender</h5>
+                                <iframe
+                                    src="https://calendar.google.com/calendar/embed?height=300&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FPontianak&showTitle=0&showNav=0&showPrint=0&showTabs=1&showTz=0&showCalendars=0&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=aWQuaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%2333B679&color=%230B8043"
+                                    style="" width="300" height="300" frameborder="0" scrolling="no"></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
         </div>
-      </div>
 
 
 
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/popper.min.js'></script>
-      <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
-            <script id="rendered-js" >
-      $('#bologna-list a').on('click', function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-      });
-      //# sourceURL=pen.js
-          </script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/popper.min.js'></script>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+        <script id="rendered-js">
+            $('#bologna-list a').on('click', function(e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+            //# sourceURL=pen.js
+        </script>
 
-<script>
-    /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-function openNav() {
-document.getElementById("mySidebar").style.width = "250px";
-}
+        <script>
+            /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+            function openNav() {
+                document.getElementById("mySidebar").style.width = "250px";
+            }
 
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-document.getElementById("mySidebar").style.width = "0";
-document.getElementById("main").style.marginLeft = "0";
-}
-</script>
-
-
+            /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>
 
 
-</div>
+
+
+    </div>
 @endsection
