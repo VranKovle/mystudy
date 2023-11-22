@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\material;
 use Livewire\Component;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class Materi extends Component
 {

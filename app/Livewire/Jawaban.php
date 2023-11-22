@@ -13,6 +13,10 @@ class Jawaban extends Component
     public $data;
     public $pertanyaan_id;
 
+    protected $rules = [
+        'jawab' => 'required|string|max:255'
+    ];
+
     public function mount($data)
     {
         $this->data = $data;
@@ -20,6 +24,7 @@ class Jawaban extends Component
 
     public function simpan()
     {
+        $this->validate();
         $simpan = new answer();
         $simpan->tugas_id = $this->data->tugas_id;
         $simpan->pertanyaan_id = $this->data->id;

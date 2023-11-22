@@ -4,6 +4,10 @@
     <button class="btn btn-primary form-control" wire:click='simpan'>Kirim</button>
     <br>
 
+    @error('jawab')
+                <span style="color: red;">Harap diisi jawabanya!!!</span>
+            @enderror
+
 
     @foreach ($answer as $data)
         @if (auth()->user()->id == $data->user_id)

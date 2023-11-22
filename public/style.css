@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(231, 231, 231);
+}
+
+.navbar {
+    background: linear-gradient(to right, #8989ff, #2443cb);
+}
+
+/* The sidebar menu */
+
+
+/* The sidebar links */
+.sidebar a {
+    padding: 8px 8px 8px 10px;
+    text-decoration: none;
+    font-size: 25px;
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar:hover .a1:hover {
+    background-color: rgb(228, 228, 228);
+}
+
+.sidebar:hover .a2:hover {
+    background-color: rgb(228, 228, 228);
+}
+
+.sidebar:hover .a3:hover {
+    background-color: rgb(228, 228, 228);
+}
+
+.sidebar:hover .a4:hover {
+    background-color: rgb(228, 228, 228);
+}
+
+.sidebar:hover .a5:hover {
+    background-color: rgb(228, 228, 228);
+}
+
+.sidebar {
+    padding-top: 1px;
+}
+
+.sidebar a {
+    font-size: 25px;
+}
+
+.offcanvas {
+    max-width: 70%;
+}

@@ -12,61 +12,7 @@
     <script src="https://kit.fontawesome.com/c41a345393.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @livewireStyles()
-    <style>
-        body {
-            background-color: rgb(231, 231, 231);
-        }
-
-        .navbar {
-            background-color: rgb(0, 107, 179);
-        }
-
-        /* The sidebar menu */
-
-
-        /* The sidebar links */
-        .sidebar a {
-            padding: 8px 8px 8px 10px;
-            text-decoration: none;
-            font-size: 25px;
-            text-decoration: none;
-            color: #000000;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidebar:hover .a1:hover {
-            background-color: rgb(228, 228, 228);
-        }
-
-        .sidebar:hover .a2:hover {
-            background-color: rgb(228, 228, 228);
-        }
-
-        .sidebar:hover .a3:hover {
-            background-color: rgb(228, 228, 228);
-        }
-
-        .sidebar:hover .a4:hover {
-            background-color: rgb(228, 228, 228);
-        }
-
-        .sidebar:hover .a5:hover {
-            background-color: rgb(228, 228, 228);
-        }
-
-        .sidebar {
-            padding-top: 1px;
-        }
-
-        .sidebar a {
-            font-size: 25px;
-        }
-
-        .offcanvas {
-            max-width: 70%;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 

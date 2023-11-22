@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('tempatlahir')->nullable();
             $table->date('tanggallahir')->nullable();
-            $table->string('jkel')->nullable();
+            $table->string('mode')->default('original');
             $table->string('gambar')->nullable();
             $table->string('peran')->default('tamu');
             $table->rememberToken();

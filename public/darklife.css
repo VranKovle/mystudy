@@ -1,0 +1,34 @@
+body{
+    background-color: rgb(32, 34, 43);
+}
+.card{
+    background-color: rgb(32, 34, 43);
+    color: white;
+    --bs-card-border-color: white;
+}
+.card-header{
+    background-color: rgb(37, 42, 61);
+}
+.table {
+    --bs-table-bg: rgb(37, 42, 61);
+    --bs-table-color: white;
+}
+.btn-outline-dark {
+    --bs-btn-color: white;
+    --bs-btn-border-color: white;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: white;
+    --bs-btn-hover-border-color: #212529;
+    --bs-btn-focus-shadow-rgb: 33,37,41;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #212529;
+    --bs-btn-active-border-color: #212529;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #212529;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #212529;
+    --bs-gradient: none;
+}
+.modal {
+    --bs-modal-bg: rgb(32, 34, 43);
+}

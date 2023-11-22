@@ -49,11 +49,16 @@
                 <div class="card">
                     <div class="card-header text-white" style="background-color: rgb(132, 74, 215);">MATERI</div>
                     <div class="card-body">
+
+                        <a href="{{ route('pdfmateri', ['id' => $data->id]) }}" class="btn btn-success">Export PDF</a>
+
                         <h3>{{ $data->judulmateri }}</h3>
+                        @if (Auth::user()->peran == 'Moderator')
                         <button class="btn btn-danger btn-sm" wire:click='hapus({{ $data->id }})'>Hapus</button>
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editmateri">
                             Edit
                         </button>
+                        @endif
                         <p>{!! $data->isimateri !!}</p>
                     </div>
                 </div>

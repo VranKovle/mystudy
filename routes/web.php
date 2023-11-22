@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Materi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,18 @@ Route::get('/account', function () {
 Route::get('/regiskan', function () {
     return view('regiskan');
 });
+Route::get('/settings', function () {
+    return view('settings');
+});
+Route::get('/contact', function () {
+    return view('contact');
+});
 
 
-Auth::routes();
+Route::get('/pdfmateri/{id}', [App\Http\Controllers\exportmateri::class, 'exportPDF'])->name('pdfmateri');
+
+
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/tugas/{idtugas}', [App\Http\Controllers\HomeController::class, 'lihatTugas'])->name('tugas');

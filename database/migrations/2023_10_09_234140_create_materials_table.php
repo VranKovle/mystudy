@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('tugas_id')->unsigned();
             $table->string('judulmateri');
-            $table->text('isimateri');
+            $table->longtext('isimateri');
             $table->timestamps();
             $table->foreign('tugas_id')->references('id')->on('tugas')->onDelete('cascade');
         });
